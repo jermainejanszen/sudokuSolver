@@ -1,6 +1,7 @@
 import copy
 import time
 import threading
+from imageParser import ImageParser
 
 def generateBlankBoard():
     board = []
@@ -253,7 +254,11 @@ doneBoard = Board.fromString("24685791318964327557329148641832956763748512995217
 
 boardToTest = "200007913180000275573291486400029567637400029952176348700032891320068700895714632"
 
-unsolvedBoard = Board.fromString(boardToTest)
+newImageParser = ImageParser()
+
+boardFromImage = newImageParser.imageToBoardString('testImage.jpg')
+
+unsolvedBoard = Board.fromString(boardFromImage)
 
 unsolvedBoard.printBoard()
 didSolveHard = unsolvedBoard.completeSolve()
