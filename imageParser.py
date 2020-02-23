@@ -71,17 +71,17 @@ class ImageParser:
                 zoomedBlock = blockImage[4:blockHeight - 4, 4:blockWidth - 4]
                 resizedBlock = Image.fromarray(zoomedBlock).resize((28,28))
                 resizedBlock = np.array(resizedBlock)
-                redimBlock = np.zeros((28,28,1))
+                pixelList = [0]*784
                 for k in range(resizedBlock.shape[0]):
                     for l in range(resizedBlock.shape[1]):
                         if resizedBlock[k,l] == 0:
-                            redimBlock[k,l,0] = 1
+                            pixelList[28*k + l] = 1
                         else:
-                            redimBlock[k,l,0] = 0
-                if len(np.unique(redimBlock)) == 1:
+                            pixelList[28*k + l] = 0
+                if len(np.unique(resizedBlock)) == 1:
                     sudokuNumbers = sudokuNumbers + '0'
                 else:
-                    valueFound = np.argmax(self.model.predict([[redimBlock]]))
+                    valueFound = np.argmax(self.model.predict([pixelList]))
                     sudokuNumbers = sudokuNumbers + str(valueFound)
         
         return sudokuNumbers

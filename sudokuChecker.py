@@ -263,6 +263,8 @@ unsolvedBoard = Board.fromString(boardFromImage)
 unsolvedBoard.printBoard()
 didSolveHard = unsolvedBoard.completeSolve()
 if didSolveHard:
+    print('Solved:')
     unsolvedBoard.printBoard()
-print(didSolveHard)
+else:
+    print('Unable to solve.')
 
