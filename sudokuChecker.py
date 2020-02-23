@@ -256,7 +256,10 @@ boardToTest = "20000791318000027557329148640002956763740002995217634870003289132
 
 newImageParser = ImageParser()
 
-boardFromImage = newImageParser.imageToBoardString('testImage.jpg')
+image = input('Which image would you like to use? ')
+if len(image) == 0:
+    image = 'testImage.jpg'
+boardFromImage = newImageParser.imageToBoardString(image)
 
 unsolvedBoard = Board.fromString(boardFromImage)
 
